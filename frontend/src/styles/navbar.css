@@ -1,0 +1,90 @@
+/* Navbar Container */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: #4338ca; /* Purple background */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Logo on the left */
+.navbar-logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: white;
+}
+
+/* Links container on the right */
+.navbar-links {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+/* Home link - regular text link */
+.nav-link {
+  color: white;
+  text-decoration: none;
+  font-size: 1rem;
+  transition: opacity 0.3s;
+}
+
+.nav-link:hover {
+  opacity: 0.8;
+}
+
+/* Login button - outlined */
+.btn-outline {
+  padding: 0.5rem 1.5rem;
+  border: 2px solid white;
+  border-radius: 6px;
+  color: white;
+  text-decoration: none;
+  font-size: 1rem;
+  transition: all 0.3s;
+  background-color: transparent;
+}
+
+.btn-outline:hover {
+  background-color: white;
+  color: #4338ca;
+}
+
+/* Sign Up button - filled */
+.btn-primary {
+  padding: 0.5rem 1.5rem;
+  border: none;
+  border-radius: 6px;
+  background-color: white;
+  color: #4338ca;
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: all 0.3s;
+}
+
+.btn-primary:hover {
+  background-color: #f3f4f6;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem;
+  }
+
+  .navbar-links {
+    gap: 1rem;
+  }
+
+  .btn-outline,
+  .btn-primary {
+    padding: 0.4rem 1rem;
+    font-size: 0.9rem;
+  }
+}
