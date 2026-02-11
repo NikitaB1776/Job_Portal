@@ -1,6 +1,10 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import "../../styles/auth.css";
+import api from "../../api/axios";
+import { useNavigate } from "react-router-dom";
+import { useUser } from "../../context/UserContext";
+
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -9,6 +13,9 @@ const Login = () => {
   });
   const [errors, setErrors] = useState({});
   const [touched, setTouched] = useState({});
+  const navigate = useNavigate();
+  const { login } = useUser();
+
 
   // Validation functions
   const validateEmail = (email) => {
@@ -51,27 +58,47 @@ const Login = () => {
   };
 
   // Handle form submission
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = async (e) => {
+  e.preventDefault();
 
-    const emailError = validateEmail(formData.email);
-    const passwordError = validatePassword(formData.password);
+  const emailError = validateEmail(formData.email);
+  const passwordError = validatePassword(formData.password);
 
-    setErrors({
-      email: emailError,
-      password: passwordError
-    });
+  setErrors({
+    email: emailError,
+    password: passwordError
+  });
 
-    setTouched({
-      email: true,
-      password: true
-    });
+  setTouched({
+    email: true,
+    password: true
+  });
 
-    if (!emailError && !passwordError) {
-      console.log("Login form submitted:", formData);
-      alert("Login successful!");
+  if (emailError || passwordError) return;
+
+  try {
+    const res = await api.post("/auth/login", formData);
+
+    localStorage.setItem("token", res.data.token);
+    localStorage.setItem("role", res.data.user.role);
+
+    // Fetch full user profile after login
+    const profileRes = await api.get("/profile");
+    login(profileRes.data);
+
+    alert("Login successful");
+
+    // Navigate based on role
+    if (res.data.user.role === "employer") {
+      navigate("/employer-dashboard");
+    } else {
+      navigate("/jobseeker-dashboard");
     }
-  };
+  } catch (err) {
+    alert(err.response?.data?.message || "Login failed");
+  }
+};
+
 
   return (
     <div className="auth-page">

@@ -1,0 +1,112 @@
+.resumes-container {
+  padding: 30px;
+  max-width: 1000px;
+  margin: auto;
+}
+
+.page-title {
+  font-size: 28px;
+  margin-bottom: 25px;
+  text-align: center;
+}
+
+.upload-section {
+  background: #f9fafb;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 30px;
+  border: 1px solid #e5e7eb;
+}
+
+.upload-section h2 {
+  margin-bottom: 10px;
+}
+
+.upload-section input {
+  margin-top: 10px;
+}
+
+.uploading-text {
+  color: #2563eb;
+  margin-top: 8px;
+}
+
+.upload-note {
+  font-size: 13px;
+  color: #6b7280;
+  margin-top: 8px;
+}
+
+.resumes-list h2 {
+  margin-bottom: 15px;
+}
+
+.resumes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.resume-card {
+  background: #ffffff;
+  padding: 16px;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.resume-info h3 {
+  font-size: 16px;
+  margin-bottom: 6px;
+}
+
+.resume-info p {
+  font-size: 13px;
+  color: #6b7280;
+}
+
+.resume-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+}
+
+.btn {
+  padding: 6px 14px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.btn.primary {
+  background: #2563eb;
+  color: white;
+}
+
+.btn.secondary {
+  background: #e5e7eb;
+  color: #111827;
+}
+
+.btn:hover {
+  opacity: 0.9;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 40px;
+  color: #6b7280;
+}
+
+.empty-icon {
+  font-size: 40px;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.loading {
+  text-align: center;
+  font-size: 18px;
+  margin-top: 50px;
+}

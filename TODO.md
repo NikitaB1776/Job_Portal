@@ -1,0 +1,5 @@
+- [ ] Update DashboardNavbar.jsx to use gradient background like homepage
+- [ ] Update dashboard-navbar CSS in index.css to match gradient
+- [ ] In Applicants.jsx, make applicant name clickable to show details modal
+- [ ] Change View Resume button to show resume in modal instead of new tab
+- [ ] Test the changes in both employer and jobseeker dashboards

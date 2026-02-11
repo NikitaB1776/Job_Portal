@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import "../../styles/auth.css";
+import api from "../../api/axios";
+
 
 const Register = () => {
   const [userType, setUserType] = useState("jobseeker");
@@ -64,30 +66,43 @@ const Register = () => {
   };
 
   // Handle form submission
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = async (e) => {
+  e.preventDefault();
 
-    const nameError = validateFullName(formData.fullName);
-    const emailError = validateEmail(formData.email);
-    const passwordError = validatePassword(formData.password);
+  const nameError = validateFullName(formData.fullName);
+  const emailError = validateEmail(formData.email);
+  const passwordError = validatePassword(formData.password);
 
-    setErrors({
-      fullName: nameError,
-      email: emailError,
-      password: passwordError
+  setErrors({
+    fullName: nameError,
+    email: emailError,
+    password: passwordError
+  });
+
+  setTouched({
+    fullName: true,
+    email: true,
+    password: true
+  });
+
+  if (nameError || emailError || passwordError) return;
+
+  try {
+    await api.post("/auth/register", {
+      fullName: formData.fullName,
+      email: formData.email,
+      password: formData.password,
+      role: userType
     });
 
-    setTouched({
-      fullName: true,
-      email: true,
-      password: true
-    });
+    alert(`Registration successful as ${userType}`);
+  } catch (err) {
+  console.log(err.response);
+  alert(err.response?.data?.message || "Registration failed");
+}
 
-    if (!nameError && !emailError && !passwordError) {
-      console.log("Form submitted:", { ...formData, userType });
-      alert(`Registration successful as ${userType}!`);
-    }
-  };
+};
+
 
   return (
     <div className="auth-page">
